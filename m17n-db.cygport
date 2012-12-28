@@ -1,0 +1,23 @@
+glibc_v=2.17
+
+NAME="m17n-db"
+VERSION=1.6.4
+RELEASE=1
+CATEGORY="Text"
+SUMMARY="Multilingualization library (data)"
+DESCRIPTION="The m17n library represents multilingual text as an object named
+M-text.  M-text is a string with attributes called text properties, and
+designed to substitute for string in C. Text properties carry any information
+required to input, display and edit the text."
+HOMEPAGE="http://www.nongnu.org/m17n/"
+SRC_URI="mirror://savannah/m17n/${P}.tar.gz
+         mirror://gnu/libc/glibc-${glibc_v}.tar.xz"
+
+DIFF_EXCLUDES="mapconv"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygconf --with-charmaps=${S}/../glibc-${glibc_v}/localedata/charmaps
+	cygmake
+}
