@@ -1,7 +1,7 @@
-glibc_v=2.17
+glibc_v=2.21
 
 NAME="m17n-db"
-VERSION=1.6.4
+VERSION=1.7.0
 RELEASE=1
 CATEGORY="Text"
 SUMMARY="Multilingualization library (data)"
@@ -12,6 +12,8 @@ required to input, display and edit the text."
 HOMEPAGE="http://www.nongnu.org/m17n/"
 SRC_URI="mirror://savannah/m17n/${P}.tar.gz
          mirror://gnu/libc/glibc-${glibc_v}.tar.xz"
+
+ARCH=noarch
 
 DIFF_EXCLUDES="mapconv"
 
