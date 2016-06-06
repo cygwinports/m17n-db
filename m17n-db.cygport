@@ -1,8 +1,8 @@
-glibc_v=2.21
+glibc_v=2.23
 
 NAME="m17n-db"
 VERSION=1.7.0
-RELEASE=1
+RELEASE=2
 CATEGORY="Text"
 SUMMARY="Multilingualization library (data)"
 DESCRIPTION="The m17n library represents multilingual text as an object named
@@ -10,10 +10,23 @@ M-text.  M-text is a string with attributes called text properties, and
 designed to substitute for string in C. Text properties carry any information
 required to input, display and edit the text."
 HOMEPAGE="http://www.nongnu.org/m17n/"
-SRC_URI="mirror://savannah/m17n/${P}.tar.gz
-         mirror://gnu/libc/glibc-${glibc_v}.tar.xz"
+SRC_URI="mirror://savannah/m17n/m17n-db-${VERSION}.tar.gz
+         mirror://gnu/glibc/glibc-${glibc_v}.tar.xz"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/rpms/m17n-db.git/plain/m17n-db-1.6.5-bn-itrans-bug182227.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/m17n-db.git/plain/m17n-db-1.6.5-kn-itrans_key-summary_bug228806.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/m17n-db.git/plain/m17n-db-1.6.5-kn-inscript-ZWNJ-bug440007.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/m17n-db.git/plain/m17n-db-1.6.5-number_pad_itrans-222634.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/m17n-db.git/plain/m17n-db-1.7.0-fix-e-o-mappings.patch
+"
 
 ARCH=noarch
+
+PKG_NAMES="${NAME} ${NAME}-devel"
+m17n_db_CONTENTS="usr/bin/ usr/share/doc/ usr/share/locale/ usr/share/m17n/"
+m17n_db_OBSOLETES="m17n-contrib"
+m17n_db_devel_REQUIRES=${NAME}
+m17n_db_devel_CONTENTS="usr/share/pkgconfig/${NAME}.pc"
 
 DIFF_EXCLUDES="mapconv"
 
